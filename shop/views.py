@@ -38,15 +38,16 @@ def is_valid_form(values):
 def add_to_wishlist(request):
     product_id =  int(request.GET.get('product_id'))
     product_to_add_to_wishlist = Product.objects.get(id=product_id)
-    check_wishlist_exist = Wishlist.objects.filter(user=request.user).first()
-    if check_wishlist_exist:
-        check_product_exist = product_id in [i.id for i in check_wishlist_exist.folder.all()]
-        if not check_product_exist:
-            check_wishlist_exist.folder.add(product_to_add_to_wishlist)
-    else: 
-        create_new = Wishlist.objects.create(user=request.user)
-        create_new
-        create_new.folder.add(product_to_add_to_wishlist)
+    if request.user.is_authenticated:
+        check_wishlist_exist = Wishlist.objects.filter(user=request.user).first()
+        if check_wishlist_exist:
+            check_product_exist = product_id in [i.id for i in check_wishlist_exist.folder.all()]
+            if not check_product_exist:
+                check_wishlist_exist.folder.add(product_to_add_to_wishlist)
+        else: 
+            create_new = Wishlist.objects.create(user=request.user)
+            create_new
+            create_new.folder.add(product_to_add_to_wishlist)
     return HttpResponse("Success!")
 
 def add_to_cart(request):

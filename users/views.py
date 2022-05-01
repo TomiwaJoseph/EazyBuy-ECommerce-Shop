@@ -14,7 +14,6 @@ from django.db.models import Count
 from django.db.models.functions import ExtractMonth
 import calendar
 from random import shuffle
-
 from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate

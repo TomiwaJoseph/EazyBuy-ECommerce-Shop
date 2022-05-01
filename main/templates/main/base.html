@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/responsive.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'main/css/side_cart.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'main/fontawesome-free/css/all.min.css' %}">
     <style>
@@ -26,13 +27,12 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top rounded">
         <div class="container">
             <a class="navbar-brand" href="{% url 'index' %}" id="nav_col">
-                <!-- <img src="imgs/logo.png" alt="#" /> -->
                 EazyBuy</a>
             <ul class="navbar-nav d-block d-lg-none ml-auto">
             </ul>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#show-menu"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars"></i>
             </button>
 
             <div class="collapse navbar-collapse" id="show-menu">
@@ -114,7 +114,7 @@
             <div class="row" id='footer'>
                 <div class="col-md-4">
                     <div class="footer-top-box">
-                        <h3>Contact us</h3>
+                        <h3>Contact Us</h3>
                         <hr class="foot_hr">
                         <p><i class="fa fa-map-marker-alt"></i>Address: No. 123456789<br>
                             <span>some street address,</span><br>

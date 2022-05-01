@@ -184,6 +184,12 @@ a:hover {
 #nav_col {
     color: teal !important;
 }
+.navbar-dark .fa-bars{
+    color: teal;
+}
+.navbar-toggler:focus{
+    outline: none !important;
+}
 .navbar-dark {
     background-color: #e7e7e7 !important;
 }

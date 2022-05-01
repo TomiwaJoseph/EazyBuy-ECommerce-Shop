@@ -1,1 +1,6 @@
-/* add space underneath login */
+
+@media (max-width: 480px) {
+    .carousel-item img {
+        width: 250% !important;
+    }
+}
