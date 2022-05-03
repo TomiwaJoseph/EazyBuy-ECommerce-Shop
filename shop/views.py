@@ -468,15 +468,7 @@ class CreateCheckoutSessionView(View):
         order = Order.objects.get(
             user=request.user, ordered=False,
         )
-        print(self.request.get_host())
-        print(self.request.get_raw_uri())
-        print(f'{self.request.scheme}://{self.request.get_host()}')
-        print(self.request.build_absolute_uri('/'))
-        print()
-        if settings.DEBUG:
-            domain_url = "http://127.0.0.1:8000"
-        else:
-            domain_url = f'{self.request.scheme}://{self.request.get_host()}'
+        domain_url = f'{self.request.scheme}://{self.request.get_host()}'
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items = [{
