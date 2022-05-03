@@ -3,4 +3,13 @@
     .carousel-item img {
         width: 250% !important;
     }
+    #wishlist_section img {
+        width: 50% !important;
+    }
+    #wishlist_section .card-title{
+        margin-top: -20px;
+    }
+    .wish_utils a{
+        width: 90% !important;
+    }
 }

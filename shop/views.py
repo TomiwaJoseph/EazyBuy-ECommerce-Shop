@@ -38,16 +38,15 @@ def is_valid_form(values):
 def add_to_wishlist(request):
     product_id =  int(request.GET.get('product_id'))
     product_to_add_to_wishlist = Product.objects.get(id=product_id)
-    if request.user.is_authenticated:
-        check_wishlist_exist = Wishlist.objects.filter(user=request.user).first()
-        if check_wishlist_exist:
-            check_product_exist = product_id in [i.id for i in check_wishlist_exist.folder.all()]
-            if not check_product_exist:
-                check_wishlist_exist.folder.add(product_to_add_to_wishlist)
-        else: 
-            create_new = Wishlist.objects.create(user=request.user)
-            create_new
-            create_new.folder.add(product_to_add_to_wishlist)
+    check_wishlist_exist = Wishlist.objects.filter(user=request.user).first()
+    if check_wishlist_exist:
+        check_product_exist = product_id in [i.id for i in check_wishlist_exist.folder.all()]
+        if not check_product_exist:
+            check_wishlist_exist.folder.add(product_to_add_to_wishlist)
+    else: 
+        create_new = Wishlist.objects.create(user=request.user)
+        create_new
+        create_new.folder.add(product_to_add_to_wishlist)
     return HttpResponse("Success!")
 
 def add_to_cart(request):
@@ -469,7 +468,15 @@ class CreateCheckoutSessionView(View):
         order = Order.objects.get(
             user=request.user, ordered=False,
         )
-        domain_url = "http://127.0.0.1:8000"
+        print(self.request.get_host())
+        print(self.request.get_raw_uri())
+        print(f'{self.request.scheme}://{self.request.get_host()}')
+        print(self.request.build_absolute_uri('/'))
+        print()
+        if settings.DEBUG:
+            domain_url = "http://127.0.0.1:8000"
+        else:
+            domain_url = f'{self.request.scheme}://{self.request.get_host()}'
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items = [{
